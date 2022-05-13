@@ -14,7 +14,6 @@ export default function Navigator() {
                 <NavLink to= '/notes'>Notes</NavLink>
             </li>
         </ul>
-      Tamos navegando
     </div>
     );
   }

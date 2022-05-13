@@ -8,7 +8,6 @@ import Navigator from "../src/components/Navigator";
 function App() {
   return (
     <BrowserRouter>
-
     <Navigator> </Navigator>
       <Routes>
         <Route path="/" element={<Home/>}/>
@@ -22,8 +21,8 @@ function App() {
         />
         <Route path="*" element={<NotFound/>}/>
       </Routes>
+      
     </BrowserRouter>
   );
 }
-
 export default App;

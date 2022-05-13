@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth"
+import { collection, addDoc, getFirestore, onSnapshot, doc, getDoc,  getDocs, } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDflIlrlNuzMHmarGH82Fw29b4xOfe1hLk",
@@ -12,14 +13,24 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
+export const googlePopUp = () => signInWithPopup(auth, provider);
 
-const provider = new GoogleAuthProvider();
-export const signInWithGoogle = () =>{
-  signInWithPopup(auth, provider) .then ((result) =>{
-    console.log(result)
-  }).catch((error) => {
-    console.log(error)
-  })
-}
+export const loginWithGoogle = () => {
+  return googlePopUp();
+};
+export {GoogleAuthProvider}
+
+export const db = getFirestore();
+
+export const saveNote = (title, description) => {
+  console.log({ title, description});
+  addDoc(collection(db, "notes"), { title, description});
+};
+
+export const getNote = () => getDocs(collection(db, "notes"));
+
+export const onGetNote = (callback) =>
+  onSnapshot(collection(db, "notes"), callback);
