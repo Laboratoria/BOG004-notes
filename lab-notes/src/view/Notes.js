@@ -1,36 +1,42 @@
 import React, { Fragment, useState } from "react";
-/*  import { useNavigate } from "react-router-dom";
-import { collection, addDoc, getFirestore } from "firebase/firestore";
-import {db, saveNote, getNote, onGetNote} from "../controler/firebase-init" */
+/*  import { useNavigate } from "react-router-dom"; */
+import {saveNote, getNote, onGetNote} from "../controler/firebase-init" 
 import { async } from "@firebase/util";
 import { useForm, Controller } from "react-hook-form";
 
 const HookForm = () => {
   const { register, errors, control, handleSubmit } = useForm();
 
-  const [datos, setDatos] = useState([""]);
+  const [datos, setDatos] = useState('');
+  const [content, setContent] = useState('');
 
-  const saveData = (data) => {
-    console.log(data);
-         setDatos([
-      ...datos,
-       data
-       
-  ]) 
-    /*   e.target.reset();  // limpiar campos  */
+/*   const notesCollection = collection(db, "postit") */
+ /*  const store = async(e) =>{
+    await 
+  } */
+
+  const saveData = (data, e) => {
+    e.preventDefault () 
+   saveNote(datos, content)
+    console.log(datos);
+    console.log(content);
+         /* setDatos(
+      notesCollection
+  )  */
+       e.target.reset();  // limpiar campos  
   };
   return (
     <Fragment>
       <h2>Este formulario esta hecho con hook</h2>
       <form onSubmit={handleSubmit(saveData)}>
         <Controller
-          render={({ field: { onChange, onBlur, value, ref } }) => (
+          render={({ field: { onChange} }) => (
             <input
               placeholder="Titulo"
               className="titleNotes"
-              onChange={onChange}
-              /* onBlur={onBlur} */
-              /* selected={value} */
+              value={datos}
+              onChange={(e) => setDatos(e.target.value)}
+              /* onChange={onChange} */
             />
           )}
           control={control}
@@ -38,11 +44,13 @@ const HookForm = () => {
         />
 
         <Controller
-          render={({ field: { onChange, onBlur, value, ref } }) => (
+          render={({ field: {onChange} }) => (
             <input
               placeholder="Descripcion"
               className="descripcionNotes"
-              onChange={onChange}
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              /* onChange={onChange} */
             />
           )}
           control={control}
@@ -52,13 +60,14 @@ const HookForm = () => {
           Publicar
         </button>
       </form>
-      <ul className="list">
-        {datos.map((value, index) => (
+     
+        {/* <ul className="list">
+          {listNotes.map((datos, index) => (
           <li key={index}>
-            {value.titulo} - {value.description}
+            {datos.titulo} - {datos.description}
           </li>
         ))}
-      </ul>
+      </ul>  */} 
     </Fragment>
   );
 };

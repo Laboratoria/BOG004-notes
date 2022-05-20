@@ -23,14 +23,14 @@ export const loginWithGoogle = () => {
 };
 export {GoogleAuthProvider}
 
-export const db = getFirestore();
+export const db = getFirestore(app);
 
 export const saveNote = (title, description) => {
   console.log({ title, description});
-  addDoc(collection(db, "notes"), { title, description});
+  addDoc(collection(db, "postit"), { title, description});
 };
 
-export const getNote = () => getDocs(collection(db, "notes"));
+export const getNote = () => getDocs(collection(db, "postit"));
 
 export const onGetNote = (callback) =>
   onSnapshot(collection(db, "notes"), callback);
