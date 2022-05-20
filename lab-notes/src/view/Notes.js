@@ -7,8 +7,8 @@ import { useForm, Controller } from "react-hook-form";
 const HookForm = () => {
   const { register, errors, control, handleSubmit } = useForm();
 
-  const [datos, setDatos] = useState('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
 
 /*   const notesCollection = collection(db, "postit") */
  /*  const store = async(e) =>{
@@ -17,9 +17,9 @@ const HookForm = () => {
 
   const saveData = (data, e) => {
     e.preventDefault () 
-   saveNote(datos, content)
-    console.log(datos);
-    console.log(content);
+   saveNote(title, description)
+    console.log(title);
+    console.log(description);
          /* setDatos(
       notesCollection
   )  */
@@ -34,8 +34,8 @@ const HookForm = () => {
             <input
               placeholder="Titulo"
               className="titleNotes"
-              value={datos}
-              onChange={(e) => setDatos(e.target.value)}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               /* onChange={onChange} */
             />
           )}
@@ -48,8 +48,8 @@ const HookForm = () => {
             <input
               placeholder="Descripcion"
               className="descripcionNotes"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
               /* onChange={onChange} */
             />
           )}
