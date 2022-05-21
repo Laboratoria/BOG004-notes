@@ -1,6 +1,8 @@
 import { initializeApp } from "firebase/app";
 import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth"
-import { collection, addDoc, getFirestore, onSnapshot, doc, getDoc,  getDocs, } from "firebase/firestore";
+import { collection, addDoc, getFirestore, onSnapshot, doc, getDoc,  getDocs, query, snapshot, QuerySnapshot , QueryDocumentSnapshot} from "firebase/firestore";
+import { get } from "react-hook-form";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDflIlrlNuzMHmarGH82Fw29b4xOfe1hLk",
@@ -30,7 +32,61 @@ export const saveNote = (title, description) => {
   addDoc(collection(db, "postit"), { title, description});
 };
 
-export const getNote = () => getDocs(collection(db, "postit"));
+
+
+ async function getNotes() {
+  const notesCol = query(collection(db, 'postit'));
+  return getDocs(notesCol)
+  .then(QuerySnapshot => {
+    return QuerySnapshot.docs
+    .map(doc => doc.data())
+    })
+ }
+ getNotes()
+ .then((items) => console.log(items))
+ .catch((error) => console.error(error))
+
+export {getNotes}; 
+
+/* async function getNotes() {
+  const notesCol = query(collection(db, 'noteCollection'));
+  const noteSnapshot = await getDocs(notesCol);
+  const noteList = noteSnapshot.docs.map(doc => {
+    console.log('DOC', doc) 
+    return doc.data()});
+     console.log(noteList) 
+   return noteList;
+} */
+
+/* const getNotes = () => {
+  let listNotes = db.collection('postit');
+  let allListNotes = listNotes.get()
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        console.log(doc.id, '=>', doc.data());
+      });
+    })
+}
+ */
+/* const getNotes = async () => {
+  let listNotes = db.collection('postit');
+  let allListNotes = await listNotes.get();
+  for(const doc of allListNotes.docs){
+    console.log(doc.id, '=>', doc.data());
+  }
+}
+ */
+/* export const getNotes = ()=> {
+const querySnapshot = await getDocs(collection(db, "postit"));
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+});
+}  */
+
+
+
+/* export const getNote = () => getDocs(collection(db, "postit"));
 
 export const onGetNote = (callback) =>
-  onSnapshot(collection(db, "notes"), callback);
+  onSnapshot(collection(db, "postit"), callback); */
