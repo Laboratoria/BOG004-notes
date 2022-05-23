@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-/*  import { useNavigate } from "react-router-dom"; */
+/* import { useNavigate } from "react-router-dom";  */
 import { saveNote, getNotes, onGetNote } from "../controler/firebase-init";
 
 import { useForm, Controller } from "react-hook-form";
@@ -9,6 +9,9 @@ const HookForm = () => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
+  const [listNotes, setListNotes]= useState([]);
+
 
   const saveData = (data, e) => {
     e.preventDefault();
@@ -20,11 +23,18 @@ const HookForm = () => {
   };
 
   useEffect(()=>{
-    console.log(useEffect)
-    getNotes().then((newDatos)=>{
-      console.log(newDatos)
-      saveData(newDatos)});
+     getNotes()
+     .then((items) => setListNotes(items))
+     .catch((error) => console.error("Estos catch", error))
   }, []);
+
+/*   onGetNote((items)=> {
+    console.log ("buenas", items)
+  })  */
+
+  console.log("Verificado", listNotes)
+  //Debo deestructuralizar el objeto 
+/*    const [] = setListNotes;  */
 
   return (
     <Fragment>
@@ -58,7 +68,13 @@ const HookForm = () => {
         <button type="submit" className="btn-notas-primary">
           Publicar
         </button>
-            <div> Aquí estan {getNotes}</div>
+            <div> Aquí estan  {listNotes.map((item) =>(
+     <div key={item.id}>
+       <p>{item.title}</p>
+       <p>{item.description}</p>
+     </div>
+   )
+   ) }</div>
      
       </form>
 
@@ -81,4 +97,6 @@ const HookForm = () => {
   );
 };
 
-export default HookForm;
+
+
+export default HookForm

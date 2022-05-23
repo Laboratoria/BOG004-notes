@@ -32,9 +32,7 @@ export const saveNote = (title, description) => {
   addDoc(collection(db, "postit"), { title, description});
 };
 
-
-
- async function getNotes() {
+ export async function getNotes() {
   const notesCol = query(collection(db, 'postit'));
   return getDocs(notesCol)
   .then(QuerySnapshot => {
@@ -42,51 +40,7 @@ export const saveNote = (title, description) => {
     .map(doc => doc.data())
     })
  }
- getNotes()
- .then((items) => console.log(items))
- .catch((error) => console.error(error))
 
-export {getNotes}; 
+ export const onGetNote = (callback) =>
+ onSnapshot(collection(db, "postit"), callback); 
 
-/* async function getNotes() {
-  const notesCol = query(collection(db, 'noteCollection'));
-  const noteSnapshot = await getDocs(notesCol);
-  const noteList = noteSnapshot.docs.map(doc => {
-    console.log('DOC', doc) 
-    return doc.data()});
-     console.log(noteList) 
-   return noteList;
-} */
-
-/* const getNotes = () => {
-  let listNotes = db.collection('postit');
-  let allListNotes = listNotes.get()
-    .then(snapshot => {
-      snapshot.forEach(doc => {
-        console.log(doc.id, '=>', doc.data());
-      });
-    })
-}
- */
-/* const getNotes = async () => {
-  let listNotes = db.collection('postit');
-  let allListNotes = await listNotes.get();
-  for(const doc of allListNotes.docs){
-    console.log(doc.id, '=>', doc.data());
-  }
-}
- */
-/* export const getNotes = ()=> {
-const querySnapshot = await getDocs(collection(db, "postit"));
-querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-  console.log(doc.id, " => ", doc.data());
-});
-}  */
-
-
-
-/* export const getNote = () => getDocs(collection(db, "postit"));
-
-export const onGetNote = (callback) =>
-  onSnapshot(collection(db, "postit"), callback); */
