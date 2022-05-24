@@ -5,6 +5,7 @@ import {
   loginWithGoogle,
   GoogleAuthProvider,
 } from "../controler/firebase-init";
+import "../view/Home.css"
 
 function Home() {
   const navigate = useNavigate();
@@ -22,23 +23,18 @@ function Home() {
   return (
     <section className="frame-remind-home">
       <div id="frame-remind" className="frame-remind">
-        <h4 className="title-remind">Recordatorio</h4>
+        <span className="container-text-home">
+        <h4 className="title-remind">RECORDATORIO</h4>
         <h4 className="subtitle-remind">
           Escribe tus sueños y conviertelos en objetivos
         </h4>
+        </span>
         <input
           className="button-remind"
           type="submit"
           value="GOOGLE"
           onClick={signInWithGoogle}
         />
-      </div>
-
-      <div>
-        <h4 className="title-remind-register"> ¿Ya tienes cuenta?</h4>{" "}
-        <Link to="/register" className="link-remind-register">
-          Sign up
-        </Link>
       </div>
     </section>
   );

@@ -1,0 +1,44 @@
+html{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: rgb(209,168,238);
+background: linear-gradient(116deg, rgba(209,168,238,1) 0%, rgba(124,207,249,1) 100%);
+}
+
+.frame-remind-home{ /*div home*/   
+position: absolute;
+width: 564px;
+height: 355px;
+left: calc(50% - 564px/2);
+top: calc(50% - 355px/2);
+background: rgba(255, 255, 255, 0.5);
+box-shadow: 12px 12px 4px rgba(0, 0, 0, 0.09);
+border-radius: 77px;
+opacity: 0.7;
+    }; 
+
+.container-text-home{
+background-size: 100%;
+
+}
+h4{
+line-height: 46px;
+text-align: center;
+color: #000000;
+left: 233px;
+top: 452px;
+font-weight: 400;
+font-size: 36px;
+        }
+  
+.button-remind{
+position: absolute;
+width: 208px;
+height: 70px;
+left: 168px;
+top: 274px;
+font-size: 30px;
+line-height: 46px;
+text-align: center;
+border-radius: 77px;
+opacity: 0.5;
+     }

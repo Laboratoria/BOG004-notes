@@ -35,13 +35,7 @@ const HookForm = () => {
           
     }, []);
 
-  /*   onGetNote((items)=> {
-    console.log ("buenas", items)
-  })  */
-
-  /* console.log("Verificado", listNotes); */
-
-  return (
+    return (
     <Fragment>
       <h2>Este formulario esta hecho con hook</h2>
       <form onSubmit={handleSubmit(saveData)}>
