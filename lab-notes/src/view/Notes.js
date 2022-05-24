@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
-/* import { useNavigate } from "react-router-dom";  */
-import { saveNote, getNotes, onGetNote } from "../controler/firebase-init";
-
+/* import { useNavigate } from "react-router-dom"; */
+import { saveNote, getNotes, onGetNotes } from "../controler/firebase-init";
 import { useForm, Controller } from "react-hook-form";
+/* import GoOut from "../view/Bottom";  */
 
 const HookForm = () => {
   const { register, errors, control, handleSubmit } = useForm();
@@ -10,31 +10,36 @@ const HookForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const [listNotes, setListNotes]= useState([]);
-
+  const [listNotes, setListNotes] = useState([]);
 
   const saveData = (data, e) => {
     e.preventDefault();
     saveNote(title, description);
     console.log(title);
     console.log(description);
+    
+    getNotes()
+      .then((items) => setListNotes(items))
+      .catch((error) => console.error("Estos catch", error));
+    
+      //Para reiniciar los campos como vacios luego que de se realizará una publicación 
+      setTitle("")
+      setDescription("")
 
-    e.target.reset(); // limpiar campos
   };
 
-  useEffect(()=>{
-     getNotes()
-     .then((items) => setListNotes(items))
-     .catch((error) => console.error("Estos catch", error))
-  }, []);
+  useEffect(() => {
+      getNotes()
+      .then((items) => setListNotes(items))
+      .catch((error) => console.error("Estos catch", error));
+          
+    }, []);
 
-/*   onGetNote((items)=> {
+  /*   onGetNote((items)=> {
     console.log ("buenas", items)
   })  */
 
-  console.log("Verificado", listNotes)
-  //Debo deestructuralizar el objeto 
-/*    const [] = setListNotes;  */
+  /* console.log("Verificado", listNotes); */
 
   return (
     <Fragment>
@@ -68,35 +73,27 @@ const HookForm = () => {
         <button type="submit" className="btn-notas-primary">
           Publicar
         </button>
-            <div> Aquí estan  {listNotes.map((item) =>(
-     <div key={item.id}>
-       <p>{item.title}</p>
-       <p>{item.description}</p>
-     </div>
-   )
-   ) }</div>
-     
+              <div className="containerAllNotes">
+          {" "}
+          Aquí estan{" "}
+          {listNotes.map((item) => 
+            <div key={item.id}>
+              <p>{item.title}</p>
+              <p>{item.description}</p>
+              <button type="button"> Editar</button>
+              <button type="button"> Eliminar</button>
+            </div>
+          )}
+        </div>
       </form>
-
-{/*    {getNotes.map((item) =>(
-     <div key={item.id}>
-       <p>{item.title}</p>
-       <p>{item.description}</p>
-     </div>
-   )
-   )} */}
-
-    {/*   {<ul className="list">
-          {notesList.map((datos, index) => (
-          <li key={index}>
-            {datos.titulo} - {datos.description}
-          </li>
-        ))}
-      </ul>  } */}
+     {/*  <button type="button" onClick={GoOut}>
+          salir 
+        </button> */}
+            
     </Fragment>
   );
 };
 
 
 
-export default HookForm
+export default HookForm;

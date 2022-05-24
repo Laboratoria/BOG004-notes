@@ -1,3 +1,4 @@
+import { deepCopy } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth"
 import { collection, addDoc, getFirestore, onSnapshot, doc, getDoc,  getDocs, query, snapshot, QuerySnapshot , QueryDocumentSnapshot} from "firebase/firestore";
@@ -41,6 +42,60 @@ export const saveNote = (title, description) => {
     })
  }
 
- export const onGetNote = (callback) =>
- onSnapshot(collection(db, "postit"), callback); 
+/*  export const onGetNotes = onSnapshot(doc(db, "postit"), (doc) => {
+  console.log("Current data: ", doc.data());
+}); */
 
+
+/*  export async function onGetNotes() {
+  const notesColAll = query(collection(db, 'postit'));
+  return onSnapshot(notesColAll)
+  .then(QuerySnapshot => {
+    return QuerySnapshot.docs
+    .map(doc => doc.data())
+    })
+ } */
+ /* export async function OngetNotes() {
+  const notesColAll = query(collection(db, 'postit'));
+  return onSnapshot(notesColAll)
+  .then(snapshot => {
+    console.log("Rett", snapshot.docs)
+    return snapshot.docs
+    .map(doc => doc.data())
+    })
+    
+ } */
+
+
+/*  export const onGetNote = (callback) =>
+ onSnapshot(collection(db, "postit") (snapshot), callback);  
+ console.log(snapshot.docs.map((doc) =>doc.data ())) */
+
+ /* 
+ export const onGetNote = onSnapshot(
+  collection(db, "postit"),
+  (snapshot) => {
+    console.log( "Recurr", snapshot)
+    // ...
+  },
+  (error) => {
+    // ...
+  });
+ */
+/*  const onGetNote = query(collection(db, "postit"));
+ const OnGetNotesAllTime = onSnapshot(onGetNote, (querySnapshot) => {
+   const postit = [];
+   querySnapshot.forEach((doc) => {
+       postit.push(doc.data().name);
+   });
+   console.log("Current: ", postit.join(", "));
+ });
+ */
+
+
+/*  export async function onGetNote() {
+  const notesColAll = onSnapshot(collection(db, "postit"), (snapshot) => {
+    console.log(snapshot.docs.map(doc) =>doc.data ())
+  ))}; 
+  */
+ 

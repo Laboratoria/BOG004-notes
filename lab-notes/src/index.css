@@ -28,3 +28,8 @@ border-color: red;
 border-radius: 8%;
 }; 
 
+.containerAllNotes{
+  border-color: red; 
+  border-radius: 40 px;
+}
+
