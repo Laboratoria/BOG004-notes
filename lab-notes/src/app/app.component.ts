@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'lab-notes';
+  img = 'https://static.vscdn.net/images/careers/demo/mercadolibre/1641314597::New+PCS+logp';
 }
