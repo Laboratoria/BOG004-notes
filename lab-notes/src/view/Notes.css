@@ -1,0 +1,70 @@
+h2 {
+    line-height: 46px;
+text-align: center;
+}
+
+.note-maker-space{
+border-radius: 10%;
+border-color: rgb(12, 243, 193);
+display: grid;
+grid-template-areas: repeat(1, 1fr);
+grid-gap: 10px;
+border: 30px;
+}
+.titleNotes{
+    border-radius: 8%;
+    border-color: rgb(12, 243, 193);
+}
+.descripcionNotes{
+    border-radius: 8%;
+    border-color: rgb(12, 243, 193);
+    
+}
+
+.btn-notas-primary{
+    border-radius: 8%;
+    border-color: whitesmoke;
+    
+}
+
+.containerAllNotes{
+    border-radius: 20%;
+/*     background-color:  purple; */
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: auto 1fr auto;
+    grid-gap: 50px;
+    grid-auto-columns: 350px 350px;
+    justify-items: stretch;
+
+    /*  grid-template-rows: repeat(1, 100px); */ /*definir el tamaño de las columnas 
+    grid-gap: 10px;
+    grid-auto-flow: column; 
+    /* grid-auto-columns: 300px 100px; */
+} 
+
+.individualNotesContainer{
+    border-radius: 10%;
+    background-color:  white;
+    opacity: 0.8;
+    display: grid;
+}
+
+h3{
+    line-height: 46px;
+text-align: center;
+color: #000000;
+left: 233px;
+top: 452px;
+font-weight: 400;
+font-size: 36px;
+}
+
+.individualNotesEdit{
+    border-radius: 5%;
+    border-color: white
+}
+.individualNotesDelet{
+    border-radius: 5%;
+    border-color: white
+}

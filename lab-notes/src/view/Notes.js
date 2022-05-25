@@ -3,8 +3,9 @@ import React, { Fragment, useEffect, useState } from "react";
 import { saveNote, getNotes, onGetNotes } from "../controler/firebase-init";
 import { useForm, Controller } from "react-hook-form";
 /* import GoOut from "../view/Bottom";  */
+import "../view/Notes.css";
 
-const HookForm = () => {
+const NoteMaker = () => {
   const { register, errors, control, handleSubmit } = useForm();
 
   const [title, setTitle] = useState("");
@@ -17,28 +18,27 @@ const HookForm = () => {
     saveNote(title, description);
     console.log(title);
     console.log(description);
-    
+
     getNotes()
       .then((items) => setListNotes(items))
       .catch((error) => console.error("Estos catch", error));
-    
-      //Para reiniciar los campos como vacios luego que de se realizará una publicación 
-      setTitle("")
-      setDescription("")
 
+    //Para reiniciar los campos como vacios luego que de se realizará una publicación
+    setTitle("");
+    setDescription("");
   };
 
   useEffect(() => {
-      getNotes()
+    getNotes()
       .then((items) => setListNotes(items))
       .catch((error) => console.error("Estos catch", error));
-          
-    }, []);
+  }, []);
 
-    return (
+  return (
     <Fragment>
-      <h2>Este formulario esta hecho con hook</h2>
+      <h3>¡Escribe para no olvidar!</h3>
       <form onSubmit={handleSubmit(saveData)}>
+        <div className="note-maker-space">
         <Controller
           render={({ field: { onChange } }) => (
             <input
@@ -54,7 +54,7 @@ const HookForm = () => {
 
         <Controller
           render={({ field: { onChange } }) => (
-            <input
+            <textarea
               placeholder="Descripcion"
               className="descripcionNotes"
               value={description}
@@ -67,27 +67,26 @@ const HookForm = () => {
         <button type="submit" className="btn-notas-primary">
           Publicar
         </button>
-              <div className="containerAllNotes">
+        </div>
+        <h3>Tus recordatorios</h3>
+        <div className="containerAllNotes">
           {" "}
-          Aquí estan{" "}
-          {listNotes.map((item) => 
-            <div key={item.id}>
+          {" "}
+          {listNotes.map((item) => (
+            <div className="individualNotesContainer" key={item.id}>
               <p>{item.title}</p>
               <p>{item.description}</p>
-              <button type="button"> Editar</button>
-              <button type="button"> Eliminar</button>
+              <button type="button" className="individualNotesEdit"> Editar</button>
+              <button type="button" className="individualNotesDelet"> Eliminar</button>
             </div>
-          )}
+          ))}
         </div>
       </form>
-     {/*  <button type="button" onClick={GoOut}>
+      {/*  <button type="button" onClick={GoOut}>
           salir 
         </button> */}
-            
     </Fragment>
   );
 };
 
-
-
-export default HookForm;
+export default NoteMaker;
