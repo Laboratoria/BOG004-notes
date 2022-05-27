@@ -65,10 +65,19 @@ const NoteMaker = () => {
     if (title != oldData.data.title) {
      }
      
-     updateDoc(editData())
+     /* updateDoc(editData()) */
      /* setidUpdate(title.value, description.value, []); */
   }
 
+/*   function arrayEditado  = title.map(item => (
+    item.id === id ? {id: item.id, name: title} : item
+  ))
+  setTitle(arrayEditado)
+  editData(false)
+  setId('')
+} catch (error) {
+  console.log(error)
+} */
 
   return (
     <Fragment>
