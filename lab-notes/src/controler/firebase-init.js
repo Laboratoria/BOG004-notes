@@ -1,10 +1,24 @@
 import { deepCopy } from "@firebase/util";
 import { initializeApp } from "firebase/app";
-import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth"
-import { collection, deleteDoc, addDoc, getFirestore, onSnapshot, doc, getDoc,  getDocs, 
-  query, snapshot, QuerySnapshot , QueryDocumentSnapshot} from "firebase/firestore";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  collection,
+  deleteDoc,
+  addDoc,
+  getFirestore,
+  onSnapshot,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  snapshot,
+  QuerySnapshot,
+  QueryDocumentSnapshot,
+  updateDoc, 
+  UpdateData
+  
+} from "firebase/firestore";
 import { get } from "react-hook-form";
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyDflIlrlNuzMHmarGH82Fw29b4xOfe1hLk",
@@ -13,7 +27,7 @@ const firebaseConfig = {
   storageBucket: "notes-md0.appspot.com",
   messagingSenderId: "478095288282",
   appId: "1:478095288282:web:9a458ef5598f2d075fc2e3",
-  measurementId: "G-H0ZE879M75"
+  measurementId: "G-H0ZE879M75",
 };
 
 // Initialize Firebase
@@ -25,33 +39,57 @@ export const googlePopUp = () => signInWithPopup(auth, provider);
 export const loginWithGoogle = () => {
   return googlePopUp();
 };
-export {GoogleAuthProvider}
+export { GoogleAuthProvider };
 
 export const db = getFirestore(app);
 
 export const saveNote = (title, description) => {
-  console.log({ title, description});
-  addDoc(collection(db, "postit"), { title, description});
+  console.log({ title, description });
+  addDoc(collection(db, "postit"), { title, description });
 };
 
- export async function getNotes() {
-  const notesCol = query(collection(db, 'postit'));
-  return getDocs(notesCol)
-  .then(QuerySnapshot => {
-    return QuerySnapshot.docs
-    .map(doc => ({
+export async function getNotes() {
+  const notesCol = query(collection(db, "postit"));
+  return getDocs(notesCol).then((QuerySnapshot) => {
+    return QuerySnapshot.docs.map((doc) => ({
       data: doc.data(),
       id: doc.id,
-    })
-    ) 
- })
+    }));
+  });
 }
 
-  export async function onDeletNotes (id){
-    console.log('ID Post eliminado', id)
-    const notesDelet = await deleteDoc(doc(db, "postit", id));
-    console.log(notesDelet)
-    return (notesDelet)
-  }
+export async function onDeletNotes(id) {
+  console.log("ID Post eliminado", id);
+  const notesDelet = await deleteDoc(doc(db, "postit", id));
+  console.log(notesDelet);
+  return notesDelet;
+}
+//actualiza 
 
- 
+export async function updataNotes(item) {
+  console.log("ID Post para editar", item);
+  const notesUpdataNotes = doc(db, "postit", item.id);
+  await updateDoc(notesUpdataNotes, {   
+    title: "",
+    description: ""
+  })
+  console.log(notesUpdataNotes.data)
+  console.log(item.data.title, "esooo")
+  console.log(item.data.description , "this")
+return notesUpdataNotes;
+}
+
+/* const washingtonRef = doc(db, "cities", "DC");
+// Set the "capital" field of the city 'DC'
+await updateDoc(washingtonRef, {
+  capital: true
+}); */
+
+/* export async function updataNotes(id) {
+  console.log("ID Post para editar", id);
+  const notesUpdataNotes = await db(collection("postit").doc(id).update({
+    title: true, 
+  description: true,
+}))
+return notesUpdataNotes
+} */

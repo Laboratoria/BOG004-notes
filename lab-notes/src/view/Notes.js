@@ -1,9 +1,20 @@
 import React, { Fragment, useEffect, useState } from "react";
 /* import { useNavigate } from "react-router-dom"; */
-import { saveNote, getNotes, onGetNotes, onDeletNotes, getNotesAll } from "../controler/firebase-init";
+import {
+  saveNote,
+  getNotes,
+  onGetNotes,
+  onDeletNotes,
+  updataNotes,
+} from "../controler/firebase-init";
 import { useForm, Controller } from "react-hook-form";
 /* import GoOut from "../view/Bottom";  */
 import "../view/Notes.css";
+import {
+  updateDoc 
+ 
+} from "firebase/firestore";
+
 
 const NoteMaker = () => {
   const { register, errors, control, handleSubmit } = useForm();
@@ -12,21 +23,20 @@ const NoteMaker = () => {
   const [description, setDescription] = useState("");
 
   const [listNotes, setListNotes] = useState([]);
+  const [idUpdate, setidUpdate] = useState(null) 
+  const [oldData, setOldData] = useState("") 
 
   const saveData = (data, e) => {
     e.preventDefault();
     saveNote(title, description);
     console.log(title);
     console.log(description);
-    
-    
+
     getNotes()
-    .then((items) => {
-      setListNotes(items)
-    })
-    .catch((error) => console.error("Estos catch", error));
-
-
+      .then((items) => {
+        setListNotes(items);
+      })
+      .catch((error) => console.error("Estos catch", error));
     //Para reiniciar los campos como vacios luego que de se realizará una publicación
     setTitle("");
     setDescription("");
@@ -35,18 +45,30 @@ const NoteMaker = () => {
   useEffect(() => {
     getNotes()
       .then((items) => {
-        console.log('ITEMS', items)
-        setListNotes(items)
+        console.log("ITEMS", items);
+        setListNotes(items);
       })
       .catch((error) => console.error("Estos catch", error));
-  }, [
-  
-  ]);
-  // UseEffect lo usamos cuando el componente necesita se actualizado, 
-  //casí siempre en la parte de abajo estan recibe otra función con los 
-  //datos que van cambiando por ese motivo duplique el código en esa parte 
-  //para que la reciba como actualización si esta vacio solo se ejecuta una vez la función
-  //Preferí dejar Getnotes fuera del useffect pues genera una lista infinita 
+  }, []);
+
+  function editData(item) {
+    setTitle(item.data.title);
+    setDescription(item.data.description);
+    setidUpdate(item.id);
+    setOldData(item)
+    console.log(item.data.title);
+    console.log(item.data.description);
+    /* updataNotes(title, description); */
+    /* saveData({...item.data()}) */
+  }
+  function despuesActu(item) {
+    if (title != oldData.data.title) {
+     }
+     
+     updateDoc(editData())
+     /* setidUpdate(title.value, description.value, []); */
+  }
+
 
   return (
     <Fragment>
@@ -81,6 +103,9 @@ const NoteMaker = () => {
           <button type="submit" className="btn-notas-primary">
             Publicar
           </button>
+          <button type="submit" onClick={() => despuesActu} >
+            EDICIÓN 
+          </button>
         </div>
         <h3>Tus recordatorios</h3>
         <div className="containerAllNotes">
@@ -89,11 +114,19 @@ const NoteMaker = () => {
             <div className="individualNotesContainer" key={item.id}>
               <p>{item.data.title}</p>
               <p>{item.data.description}</p>
-              <button type="button" className="individualNotesEdit" >
+              <button
+                type="button"
+                className="individualNotesEdit"
+                onClick={() => editData(item)}
+              >
                 {" "}
                 Editar
               </button>
-              <button type="button" className="individualNotesDelet"  onClick={() =>onDeletNotes(item.id)} >
+              <button
+                type="button"
+                className="individualNotesDelet"
+                onClick={() => onDeletNotes(item.id)}
+              >
                 {" "}
                 Eliminar
               </button>
@@ -109,3 +142,9 @@ const NoteMaker = () => {
 };
 
 export default NoteMaker;
+
+// UseEffect lo usamos cuando el componente necesita se actualizado,
+//casí siempre en la parte de abajo estan recibe otra función con los
+//datos que van cambiando por ese motivo duplique el código en esa parte
+//para que la reciba como actualización si esta vacio solo se ejecuta una vez la función
+//Preferí dejar Getnotes fuera del useffect pues genera una lista infinita
