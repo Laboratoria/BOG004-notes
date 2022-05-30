@@ -109,10 +109,11 @@ const NoteMaker = () => {
             control={control}
             name="description"
           />
-          <button type="submit" className="btn-notas-primary">
-            Publicar
-          </button>
-          <button type="submit" onClick={() => despuesActu} >
+          <button type="submit" className="btn-notas-primary" >
+          <ion-icon name="checkmark"></ion-icon>
+              </button>
+          <button type="submit" className="btn-notas-primary" onClick={() => despuesActu} >
+          <ion-icon name="checkmark-done"></ion-icon>
             EDICIÓN 
           </button>
         </div>
@@ -129,6 +130,7 @@ const NoteMaker = () => {
                 onClick={() => editData(item)}
               >
                 {" "}
+                <ion-icon name="create"></ion-icon>
                 Editar
               </button>
               <button
@@ -137,6 +139,7 @@ const NoteMaker = () => {
                 onClick={() => onDeletNotes(item.id)}
               >
                 {" "}
+                <ion-icon name="close-circle"></ion-icon>
                 Eliminar
               </button>
             </div>

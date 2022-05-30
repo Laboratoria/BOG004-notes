@@ -1,14 +1,8 @@
-/* * {
-  margin: 0;
-  background-image: url(../src/imagen/home.jpg) no-repeat center center cover; 
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*{
+  font-family: 'Concert One', cursive;
 }
- */
-code {
-  font-family: 'Imprima';
-  font-style: normal;
-}
- 
+
+
+
 
 

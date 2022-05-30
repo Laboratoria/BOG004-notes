@@ -5,6 +5,7 @@ background: linear-gradient(116deg, rgba(209,168,238,1) 0%, rgba(124,207,249,1) 
 }
 
 .frame-remind-home{ /*div home*/   
+    font-family: 'Concert One', cursive;
 position: absolute;
 width: 564px;
 height: 355px;
@@ -21,6 +22,7 @@ background-size: 100%;
 
 }
 h4{
+font-family: 'Concert One', cursive;
 line-height: 46px;
 text-align: center;
 color: #000000;
@@ -42,3 +44,44 @@ text-align: center;
 border-radius: 77px;
 opacity: 0.5;
      }
+
+
+/*Aplicación mediaQuery*/
+@media screen  and (max-width: 820px) { /*tablet*/
+    html{
+        background: rgb(34,193,195);
+        background: radial-gradient(circle, rgba(34,193,195,1) 0%, rgba(146,237,183,1) 100%);
+}
+.frame-remind-home{ /*div home*/   
+    top: 200px
+}
+}
+
+@media screen  and (max-width: 414px) { /*celular*/
+    html{
+    background: rgb(238,174,202);
+     background: radial-gradient(circle, rgba(238,174,202,1) 4%, rgba(233,226,148,1) 97%);
+}
+.frame-remind-home{ /*div home*/   
+    width: 250px;
+    height: 250px;
+    left: 100px;
+    right: 100px;
+}
+h4{
+    line-height: 30px;
+    left: 33px;
+    top: 300px;
+    bottom: 600px;
+    font-size: 26px;
+            }
+      
+    .button-remind{
+    width: 208px;
+    height: 70px;
+    left: 18px;
+    top: 274px;
+         }
+
+
+}
