@@ -1,9 +1,7 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
-  provider,
   loginWithGoogle,
-  GoogleAuthProvider,
 } from "../controler/firebase-init";
 import "../view/Home.css"
 
@@ -13,11 +11,9 @@ function Home() {
     loginWithGoogle()
       .then((res) => {
         navigate("/notes");
-        console.log("response: ", res);
       })
       .catch((error) => {
         navigate("/*");
-        console.log("response: ", error);
       });
   };
   return (

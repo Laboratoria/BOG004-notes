@@ -1,21 +1,12 @@
 import React, { Fragment, useEffect, useState } from "react";
-/* import { useNavigate } from "react-router-dom"; */
 import {
   saveNote,
   getNotes,
-  onGetNotes,
   onDeletNotes,
   updataNotes,
 } from "../controler/firebase-init";
 import { useForm, Controller } from "react-hook-form";
-/* import GoOut from "../view/Bottom";  */
 import "../view/Notes.css";
-import {
-  updateDoc 
- 
-} from "firebase/firestore";
-
-
 
 const NoteMaker = () => {
   const { register, errors, control, handleSubmit } = useForm();
@@ -24,8 +15,8 @@ const NoteMaker = () => {
   const [description, setDescription] = useState("");
 
   const [listNotes, setListNotes] = useState([]);
-  const [idUpdate, setidUpdate] = useState(null) 
-  const [oldData, setOldData] = useState("") 
+  const [idUpdate, setidUpdate] = useState(null);
+  const [oldData, setOldData] = useState("");
 
   const saveData = (data, e) => {
     e.preventDefault();
@@ -46,7 +37,6 @@ const NoteMaker = () => {
   useEffect(() => {
     getNotes()
       .then((items) => {
-        console.log("ITEMS", items);
         setListNotes(items);
       })
       .catch((error) => console.error("Estos catch", error));
@@ -56,36 +46,28 @@ const NoteMaker = () => {
     setTitle(item.data.title);
     setDescription(item.data.description);
     setidUpdate(item.id);
-    setOldData(item)
+    setOldData(item);
     console.log(item.data.title);
     console.log(item.data.description);
-    /* updataNotes(title, description); */
-    /* saveData({...item.data()}) */
   }
 
-   const [editStatusNote, setEditStatusNote]= useState(false) 
+  const [editStatusNote, setEditStatusNote] = useState(false);
 
-   function despuesActu(item) {
-     console.log('ITEM: ', item);
-     setEditStatusNote(true)
-    // console.log("setOldData: ", setOldData)
+  function postUpdatedNote(item) {
+    console.log("ITEM: ", item);
+    setEditStatusNote(true);
     if (!setOldData) {
-    console.log("if")
-      /* saveData(title.value, description.value, []); */
-    }else {
-    /*   console.log("else", item)
-      console.log( "X", description.value) */
-      updataNotes(item, {title: title, description: description});
-      
-
-     }
-    } 
+      console.log("if");
+    } else {
+      updataNotes(item, { title: title, description: description });
+    }
+}
 
   return (
     <Fragment>
       <h3>¡Escribe para no olvidar!</h3>
 
-      <form    onSubmit={editStatusNote ? despuesActu : handleSubmit(saveData)} > 
+      <form onSubmit={editStatusNote ? postUpdatedNote : handleSubmit(saveData)}>
         <div className="note-maker-space">
           <Controller
             render={({ field: { onChange } }) => (
@@ -112,17 +94,20 @@ const NoteMaker = () => {
             control={control}
             name="description"
           />
-          <button type="submit" className="btn-notas-primary"  /* onSubmit={() => handleSubmit(saveData)} */>
-          <ion-icon name="checkmark"></ion-icon>
-              </button>
-          <button type="submit" className="btn-notas-primary" onClick={() => despuesActu(oldData)} >
-          <ion-icon name="checkmark-done"></ion-icon>
-            EDICIÓN 
+          <button type="submit" className="btn-notas-primary">
+            <ion-icon name="checkmark"></ion-icon>
+          </button>
+          <button
+            type="submit"
+            className="btn-notas-primary"
+            onClick={() => postUpdatedNote(oldData)}
+          >
+            <ion-icon name="checkmark-done"></ion-icon>
+            EDICIÓN
           </button>
         </div>
         <h3>Tus recordatorios</h3>
         <div className="containerAllNotes">
-          {" "}
           {listNotes.map((item) => (
             <div className="individualNotesContainer" key={item.id}>
               <p>{item.data.title}</p>
@@ -132,7 +117,6 @@ const NoteMaker = () => {
                 className="individualNotesEdit"
                 onClick={() => editData(item)}
               >
-                {" "}
                 <ion-icon name="create" className="notes-icon-edit"></ion-icon>
                 {/* Editar */}
               </button>
@@ -141,18 +125,18 @@ const NoteMaker = () => {
                 className="individualNotesDelet"
                 onClick={() => onDeletNotes(item.id)}
               >
-                {" "}
-                <ion-icon name="close-circle" className="notes-icon-delet" ></ion-icon>
+                <ion-icon
+                  name="close-circle"
+                  className="notes-icon-delet"
+                ></ion-icon>
                 {/* Eliminar */}
               </button>
             </div>
           ))}
         </div>
-      </form>
-      {/*  <button type="button" onClick={GoOut}>
-          salir 
-        </button> */}
+      </form> 
     </Fragment>
+    
   );
 };
 
@@ -163,14 +147,3 @@ export default NoteMaker;
 //datos que van cambiando por ese motivo duplique el código en esa parte
 //para que la reciba como actualización si esta vacio solo se ejecuta una vez la función
 //Preferí dejar Getnotes fuera del useffect pues genera una lista infinita
-
-
-/*   function arrayEditado  = title.map(item => (
-    item.id === id ? {id: item.id, name: title} : item
-  ))
-  setTitle(arrayEditado)
-  editData(false)
-  setId('')
-} catch (error) {
-  console.log(error)
-} */

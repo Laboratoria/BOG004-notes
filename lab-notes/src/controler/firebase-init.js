@@ -6,17 +6,10 @@ import {
   deleteDoc,
   addDoc,
   getFirestore,
-  onSnapshot,
   doc,
-  getDoc,
   getDocs,
   query,
-  snapshot,
-  QuerySnapshot,
-  QueryDocumentSnapshot,
-  updateDoc, 
-  UpdateData
-  
+  updateDoc,
 } from "firebase/firestore";
 import { get } from "react-hook-form";
 
@@ -64,32 +57,15 @@ export async function onDeletNotes(id) {
   console.log(notesDelet);
   return notesDelet;
 }
-//actualiza 
+//actualiza
 
 export async function updataNotes(item, newObj) {
-  // const notesUpdataNotes = collection(db, "postit");
+  console.log("new title: ", newObj.title);
+  console.log("new description: ", newObj.description);
 
-/*  console.log('refercia: ', notesUpdataNotes) */
-  console.log('new title: ',newObj.title)
-  console.log( "new description: ", newObj.description)
-
-  await updateDoc(doc(collection(db, "postit"),item.id), { title: newObj.title, description:newObj.description })
-
-  
-/* return notesUpdataNotes; */
+  await updateDoc(doc(collection(db, "postit"), item.id), {
+    title: newObj.title,
+    description: newObj.description,
+  });
 }
 
-/* const washingtonRef = doc(db, "cities", "DC");
-// Set the "capital" field of the city 'DC'
-await updateDoc(washingtonRef, {
-  capital: true
-}); */
-
-/* export async function updataNotes(id) {
-  console.log("ID Post para editar", id);
-  const notesUpdataNotes = await db(collection("postit").doc(id).update({
-    title: true, 
-  description: true,
-}))
-return notesUpdataNotes
-} */
