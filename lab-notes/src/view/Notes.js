@@ -62,28 +62,30 @@ const NoteMaker = () => {
     /* updataNotes(title, description); */
     /* saveData({...item.data()}) */
   }
-  function despuesActu(item) {
-    if (title != oldData.data.title) {
-     }
-     
-     /* updateDoc(editData()) */
-     /* setidUpdate(title.value, description.value, []); */
-  }
 
-/*   function arrayEditado  = title.map(item => (
-    item.id === id ? {id: item.id, name: title} : item
-  ))
-  setTitle(arrayEditado)
-  editData(false)
-  setId('')
-} catch (error) {
-  console.log(error)
-} */
+   const [editStatusNote, setEditStatusNote]= useState(false) 
+
+   function despuesActu(item) {
+     console.log('ITEM: ', item);
+     setEditStatusNote(true)
+    // console.log("setOldData: ", setOldData)
+    if (!setOldData) {
+    console.log("if")
+      /* saveData(title.value, description.value, []); */
+    }else {
+    /*   console.log("else", item)
+      console.log( "X", description.value) */
+      updataNotes(item, {title: title, description: description});
+      
+
+     }
+    } 
 
   return (
     <Fragment>
       <h3>¡Escribe para no olvidar!</h3>
-      <form onSubmit={handleSubmit(saveData)}>
+
+      <form    onSubmit={editStatusNote ? despuesActu : handleSubmit(saveData)} > 
         <div className="note-maker-space">
           <Controller
             render={({ field: { onChange } }) => (
@@ -110,10 +112,10 @@ const NoteMaker = () => {
             control={control}
             name="description"
           />
-          <button type="submit" className="btn-notas-primary" >
+          <button type="submit" className="btn-notas-primary"  /* onSubmit={() => handleSubmit(saveData)} */>
           <ion-icon name="checkmark"></ion-icon>
               </button>
-          <button type="submit" className="btn-notas-primary" onClick={() => despuesActu} >
+          <button type="submit" className="btn-notas-primary" onClick={() => despuesActu(oldData)} >
           <ion-icon name="checkmark-done"></ion-icon>
             EDICIÓN 
           </button>
@@ -161,3 +163,14 @@ export default NoteMaker;
 //datos que van cambiando por ese motivo duplique el código en esa parte
 //para que la reciba como actualización si esta vacio solo se ejecuta una vez la función
 //Preferí dejar Getnotes fuera del useffect pues genera una lista infinita
+
+
+/*   function arrayEditado  = title.map(item => (
+    item.id === id ? {id: item.id, name: title} : item
+  ))
+  setTitle(arrayEditado)
+  editData(false)
+  setId('')
+} catch (error) {
+  console.log(error)
+} */

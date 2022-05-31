@@ -66,17 +66,17 @@ export async function onDeletNotes(id) {
 }
 //actualiza 
 
-export async function updataNotes(item) {
-  console.log("ID Post para editar", item);
-  const notesUpdataNotes = doc(db, "postit", item.id);
-  await updateDoc(notesUpdataNotes, {   
-    title: "",
-    description: ""
-  })
-  console.log(notesUpdataNotes.data)
-  console.log(item.data.title, "esooo")
-  console.log(item.data.description , "this")
-return notesUpdataNotes;
+export async function updataNotes(item, newObj) {
+  // const notesUpdataNotes = collection(db, "postit");
+
+/*  console.log('refercia: ', notesUpdataNotes) */
+  console.log('new title: ',newObj.title)
+  console.log( "new description: ", newObj.description)
+
+  await updateDoc(doc(collection(db, "postit"),item.id), { title: newObj.title, description:newObj.description })
+
+  
+/* return notesUpdataNotes; */
 }
 
 /* const washingtonRef = doc(db, "cities", "DC");
