@@ -1,7 +1,7 @@
 import React from "react";
 import  GoOutButton  from "./Button";
 import { useNavigate } from "react-router-dom";
-
+import "../view/NotFound.css";
 
 export default function NotFound() {
   const navigate = useNavigate();
@@ -11,10 +11,18 @@ export default function NotFound() {
     navigate('/');
   }
     return(
-    <div>
-      <h1>¡Ops esta dirección no ha sido encontrada! </h1>
-      <GoOutButton goTo={goTo}/>
+    <div className="notFound-message-box">
+      <h1 className="notFound-message-title">¡Ops esta dirección no ha sido encontrada! </h1>
+     <section className="notFound-message-button">
+     <GoOutButton goTo={goTo}/>
+     </section>
     </div>
     );
   }
+
+
+
+
+
+  
   

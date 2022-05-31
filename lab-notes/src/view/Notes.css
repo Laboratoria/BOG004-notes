@@ -34,12 +34,13 @@ padding: 30px;
 }
 
 .btn-notas-primary{ /*botón publicar y editar*/
+    color: rgb(11, 185, 11);
     border-color: whitesmoke;
-    width:  200px;
+    width:  70px;
     height: 30px;
-    margin-left : 510px;
-    margin-right : 25px;
-}
+    margin-left : 650px;
+    margin-right : 25px; 
+}   
 
 .containerAllNotes{
     font-family: 'Carter One', cursive;
@@ -48,14 +49,17 @@ padding: 30px;
     grid-gap: 50px;
     justify-items: stretch;
     padding: 30px;
-    font-family: 'Gothic A1', sans-serif;
+    border: 20%;
+    
     } 
 
 .individualNotesContainer{
+    background: rgb(242,242,242);
+background: radial-gradient(circle, rgba(242,242,242,1) 4%, rgba(207,240,209,1) 97%);
     font-family: 'Carter One';
     background-color:  white;
     opacity: 0.8;
-    display: grid;
+    margin-bottom: 0%;
 }
 
 h3{
@@ -69,20 +73,31 @@ font-size: 36px;
 }
 
 .individualNotesEdit{
-    border-radius: 5%;
-    border-color: white
+    margin-bottom: 0%;
+    border-radius: 100px;
+    border-color: whitesmoke;
+    width: 18%;
+    margin: 0 10px;
+    background-color: whitesmoke;
+    display: inline;
+    margin-left: 48px;
+
+
+   
 }
 .individualNotesDelet{
-    border-radius: 5%;
-    border-color: white
+    color: red;
+    border-radius: 100px;
+    border-color: white;
+    width: 18%;
+    background-color: whitesmoke;
+    display: inline;
+    margin-left: 50px;
 }
 
 ion-icon{
-    font-size: 28px;
+    font-size: 25px;
 }
-
-
-
 @media screen  and (max-width: 820px) { /*tablet*/
     .titleNotes{
        margin-left : 20vw;
@@ -91,8 +106,10 @@ ion-icon{
         margin-left : 20vw;
     }
     .btn-notas-primary{
-        margin-left : 250px;
-    margin-right : 25px;
+        margin-left : 310px;
+    margin-right : 28px;
+    width:  70px;
+
     }
 
     .containerAllNotes{
@@ -107,9 +124,8 @@ ion-icon{
 
 @media screen  and (max-width: 414px) { /*celular*/
     .btn-notas-primary{
-    margin-left : 150px;
     margin-right : 25px;
-    width:  100px;
+    width:  50px;
     margin-left: 115px;
     }
     .descripcionNotes{

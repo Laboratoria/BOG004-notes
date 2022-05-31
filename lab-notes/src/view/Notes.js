@@ -16,6 +16,7 @@ import {
 } from "firebase/firestore";
 
 
+
 const NoteMaker = () => {
   const { register, errors, control, handleSubmit } = useForm();
 
@@ -130,8 +131,8 @@ const NoteMaker = () => {
                 onClick={() => editData(item)}
               >
                 {" "}
-                <ion-icon name="create"></ion-icon>
-                Editar
+                <ion-icon name="create" className="notes-icon-edit"></ion-icon>
+                {/* Editar */}
               </button>
               <button
                 type="button"
@@ -139,8 +140,8 @@ const NoteMaker = () => {
                 onClick={() => onDeletNotes(item.id)}
               >
                 {" "}
-                <ion-icon name="close-circle"></ion-icon>
-                Eliminar
+                <ion-icon name="close-circle" className="notes-icon-delet" ></ion-icon>
+                {/* Eliminar */}
               </button>
             </div>
           ))}
