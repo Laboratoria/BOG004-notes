@@ -1,0 +1,156 @@
+h2 {
+line-height: 46px;
+text-align: center;
+
+}
+
+.note-maker-space{
+    font-family: 'Concert One', cursive;
+border-radius: 10%;
+border-color: rgb(12, 243, 193);
+display: grid;
+grid-template-areas: repeat(1, 1fr);
+grid-gap: 10px;
+border: 30px;
+padding: 30px;
+}
+.titleNotes{
+    border-color: whitesmoke;
+    width:  450px;
+    height: 30px;
+    width: 50vw;
+    margin-left : 20vw;
+    opacity: 0.6;
+}
+.descripcionNotes{
+   
+    border-color: whitesmoke;
+    resize:none; /*para que no se pueda redireccionar el textarea*/
+    width:  450px;
+    height: 100px;
+    width: 50vw;
+    margin-left : 20vw;
+    opacity: 0.6;
+}
+
+.btn-notas-primary{ /*botón publicar y editar*/
+    color: rgb(11, 185, 11);
+    border-color: whitesmoke;
+    width:  70px;
+    height: 30px;
+    margin-left : 650px;
+    margin-right : 25px; 
+}   
+
+.containerAllNotes{
+    font-family: 'Carter One', cursive;
+    border-radius: 20%;
+    display: grid;
+    grid-gap: 50px;
+    justify-items: stretch;
+    padding: 30px;
+    border: 20%;
+    
+    } 
+
+.individualNotesContainer{
+    background: rgb(242,242,242);
+background: radial-gradient(circle, rgba(242,242,242,1) 4%, rgba(207,240,209,1) 97%);
+    font-family: 'Carter One';
+    background-color:  white;
+    opacity: 0.8;
+    margin-bottom: 0%;
+}
+
+h3{
+    line-height: 46px;
+text-align: center;
+color: #000000;
+left: 233px;
+top: 452px;
+font-weight: 400;
+font-size: 36px;
+}
+
+.individualNotesEdit{
+    margin-bottom: 0%;
+    border-radius: 100px;
+    border-color: whitesmoke;
+    width: 18%;
+    margin: 0 10px;
+    background-color: whitesmoke;
+    display: inline;
+    margin-left: 48px;
+
+
+   
+}
+.individualNotesDelet{
+    color: red;
+    border-radius: 100px;
+    border-color: white;
+    width: 18%;
+    background-color: whitesmoke;
+    display: inline;
+    margin-left: 50px;
+}
+
+ion-icon{
+    font-size: 25px;
+}
+@media screen  and (max-width: 820px) { /*tablet*/
+    .titleNotes{
+       margin-left : 20vw;
+    }
+    .descripcionNotes{
+        margin-left : 20vw;
+    }
+    .btn-notas-primary{
+        margin-left : 310px;
+    margin-right : 28px;
+    width:  70px;
+
+    }
+
+    .containerAllNotes{
+        display: grid;
+        grid-template-columns: 250px 250px;
+        margin-left : 80px;
+        margin-right: 20px;
+    }
+
+
+}
+
+@media screen  and (max-width: 414px) { /*celular*/
+    .btn-notas-primary{
+    margin-right : 25px;
+    width:  50px;
+    margin-left: 115px;
+    }
+    .descripcionNotes{
+        margin-left: 50px;
+    }
+    .titleNotes{
+        margin-left: 50px;
+     }
+     
+    .containerAllNotes{
+        display: grid;
+        grid-template-columns: 250px;
+        margin-left : 50px;
+        margin-right: 50px;
+       
+    }
+}
+
+@media screen  and (min-width: 1200px) {
+    
+    .containerAllNotes{
+           display: grid;
+      grid-template-columns: 250px 250px 250px 250px;
+      margin-left : 70px;
+      margin-right : 20px;
+    } 
+
+}

@@ -1,11 +1,24 @@
-// Import the functions you need from the SDKs you need
+import { deepCopy } from "@firebase/util";
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  collection,
+  deleteDoc,
+  addDoc,
+  getFirestore,
+  onSnapshot,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  snapshot,
+  QuerySnapshot,
+  QueryDocumentSnapshot,
+  updateDoc, 
+  UpdateData
+} from "firebase/firestore";
+import { get } from "react-hook-form";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDflIlrlNuzMHmarGH82Fw29b4xOfe1hLk",
   authDomain: "notes-md0.firebaseapp.com",
@@ -13,9 +26,54 @@ const firebaseConfig = {
   storageBucket: "notes-md0.appspot.com",
   messagingSenderId: "478095288282",
   appId: "1:478095288282:web:9a458ef5598f2d075fc2e3",
-  measurementId: "G-H0ZE879M75"
+  measurementId: "G-H0ZE879M75",
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
+export const googlePopUp = () => signInWithPopup(auth, provider);
+
+export const loginWithGoogle = () => {
+  return googlePopUp();
+};
+export { GoogleAuthProvider };
+
+export const db = getFirestore(app);
+
+export const saveNote = (title, description) => {
+  console.log({ title, description });
+  addDoc(collection(db, "postit"), { title, description });
+};
+
+export async function getNotes() {
+  const notesCol = query(collection(db, "postit"));
+  return getDocs(notesCol).then((QuerySnapshot) => {
+    return QuerySnapshot.docs.map((doc) => ({
+      data: doc.data(),
+      id: doc.id,
+    }));
+  });
+}
+
+export async function onDeletNotes(id) {
+  console.log("ID Post eliminado", id);
+  const notesDelet = await deleteDoc(doc(db, "postit", id));
+  console.log(notesDelet);
+  return notesDelet;
+}
+//actualiza
+
+export async function updataNotes(item, newObj) {
+  // const notesUpdataNotes = collection(db, "postit");
+/* console.log('refercia: ', notesUpdataNotes) */
+  console.log("new title: ", newObj.title);
+  console.log("new description: ", newObj.description)
+
+  await updateDoc(doc(collection(db, "postit"), item.id), {
+    title: newObj.title,
+    description: newObj.description,
+  })
+}
+

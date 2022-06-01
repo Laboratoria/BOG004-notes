@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Home from "./view/Home";
+import Notes from "./view/Notes";
+import NotFound from "./view/NotFound";
+import Navigator from "../src/components/Navigator";
+import React from "react"; 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Lo solucionamos
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <Navigator> </Navigator>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/notes" element={<Notes/>}/>
+        <Route path="*" element={<NotFound/>}/>x
+      </Routes>
+      
+    </BrowserRouter>
   );
 }
-
 export default App;
