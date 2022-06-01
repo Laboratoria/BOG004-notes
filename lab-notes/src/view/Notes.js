@@ -4,19 +4,24 @@ import {
   getNotes,
   onDeletNotes,
   updataNotes,
+  onGetNotes,
 } from "../controler/firebase-init";
 import { useForm, Controller } from "react-hook-form";
 import "../view/Notes.css";
+import {
+  updateDoc 
+} from "firebase/firestore";
+import { async } from "@firebase/util";
+/* import { useNavigate } from "react-router-dom"; */
 
 const NoteMaker = () => {
   const { register, errors, control, handleSubmit } = useForm();
-
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-
   const [listNotes, setListNotes] = useState([]);
   const [idUpdate, setidUpdate] = useState(null);
   const [oldData, setOldData] = useState("");
+  const [editStatusNote, setEditStatusNote] = useState(false);
 
   const saveData = (data, e) => {
     e.preventDefault();
@@ -24,25 +29,25 @@ const NoteMaker = () => {
     console.log(title);
     console.log(description);
 
-    getNotes()
-      .then((items) => {
-        setListNotes(items);
-      })
-      .catch((error) => console.error("Estos catch", error));
+    getListNotes();
     //Para reiniciar los campos como vacios luego que de se realizará una publicación
     setTitle("");
     setDescription("");
   };
 
-  useEffect(() => {
+  const getListNotes = ()=>{
     getNotes()
-      .then((items) => {
-        setListNotes(items);
-      })
-      .catch((error) => console.error("Estos catch", error));
+    .then((items) => {
+      setListNotes(items);
+    })
+    .catch((error) => console.error("Estos catch", error));
+  }
+
+  useEffect(() => {
+    getListNotes();
   }, []);
 
-  function editData(item) {
+  const editData = (item) =>{
     setTitle(item.data.title);
     setDescription(item.data.description);
     setidUpdate(item.id);
@@ -51,16 +56,20 @@ const NoteMaker = () => {
     console.log(item.data.description);
   }
 
-  const [editStatusNote, setEditStatusNote] = useState(false);
-
-  function postUpdatedNote(item) {
-    console.log("ITEM: ", item);
+  const postUpdatedNote = async(e)  =>{
+    e.preventDefault();
+    console.log("ITEM: ", oldData);
     setEditStatusNote(true);
     if (!setOldData) {
       console.log("if");
     } else {
-      updataNotes(item, { title: title, description: description });
+      await updataNotes(oldData, { title: title, description: description });
+      getListNotes();
+        //Para reiniciar los campos como vacios luego que de se realizará una publicación
+    setTitle("");
+    setDescription("");
     }
+
 }
 
   return (
@@ -98,9 +107,9 @@ const NoteMaker = () => {
             <ion-icon name="checkmark"></ion-icon>
           </button>
           <button
-            type="submit"
+            
             className="btn-notas-primary"
-            onClick={() => postUpdatedNote(oldData)}
+            onClick={(e) => postUpdatedNote(e)}
           >
             <ion-icon name="checkmark-done"></ion-icon>
             EDICIÓN
@@ -108,6 +117,7 @@ const NoteMaker = () => {
         </div>
         <h3>Tus recordatorios</h3>
         <div className="containerAllNotes">
+        {" "}
           {listNotes.map((item) => (
             <div className="individualNotesContainer" key={item.id}>
               <p>{item.data.title}</p>
@@ -116,7 +126,7 @@ const NoteMaker = () => {
                 type="button"
                 className="individualNotesEdit"
                 onClick={() => editData(item)}
-              >
+              >{" "}
                 <ion-icon name="create" className="notes-icon-edit"></ion-icon>
                 {/* Editar */}
               </button>
@@ -124,7 +134,7 @@ const NoteMaker = () => {
                 type="button"
                 className="individualNotesDelet"
                 onClick={() => onDeletNotes(item.id)}
-              >
+              > {" "}
                 <ion-icon
                   name="close-circle"
                   className="notes-icon-delet"

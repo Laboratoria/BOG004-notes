@@ -6,10 +6,16 @@ import {
   deleteDoc,
   addDoc,
   getFirestore,
+  onSnapshot,
   doc,
+  getDoc,
   getDocs,
   query,
-  updateDoc,
+  snapshot,
+  QuerySnapshot,
+  QueryDocumentSnapshot,
+  updateDoc, 
+  UpdateData
 } from "firebase/firestore";
 import { get } from "react-hook-form";
 
@@ -60,12 +66,14 @@ export async function onDeletNotes(id) {
 //actualiza
 
 export async function updataNotes(item, newObj) {
+  // const notesUpdataNotes = collection(db, "postit");
+/* console.log('refercia: ', notesUpdataNotes) */
   console.log("new title: ", newObj.title);
-  console.log("new description: ", newObj.description);
+  console.log("new description: ", newObj.description)
 
   await updateDoc(doc(collection(db, "postit"), item.id), {
     title: newObj.title,
     description: newObj.description,
-  });
+  })
 }
 
