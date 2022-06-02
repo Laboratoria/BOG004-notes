@@ -1,29 +1,46 @@
-import React, { Component } from "react";
-import Button from 'algun lado'
-import firebase from '../firebase/firebase-config';
-import { signInWithRedirect } from 'firebase/auth';
+//Aqui voy a hacer la vista de loginin, debe estar en el ruteo de App,
+//debe traerse el componente Button
 
-export default class Login extends Component{
-    constructor(props){
-        super(props);
-        this.login = this.login.bind(this);
-    }
-    login(){
-        let provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth()signInWithRedirect(provider).then(result =>{
-            console.log('login google',result);
-        })
-    }
-    render(){
-        return(
-            <div>
-                <Button variant='contained' onClick={this.Login}>
-                    Iniciar sesión con Google
-                </Button>
-            </div>
-        );
-    }
-}
+import React, { Component } from "react";
+import Button from "components/Button";
+import firebase from '../firebase/firebaseConfig';
+// import { signInWithRedirect } from 'firebase/auth';
+// import { GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithRedirect } from "firebase/auth";
+
+// const provider = new GoogleAuthProvider();
+const login = () => {
+    // return(
+    //     <div>
+    //     <button>Sign in with Google</button>
+    //     </div>
+    // )
+};
+
+export default login;
+// export default className Login extends Component{
+//     const auth = getAuth();
+//     signInWithRedirect(auth, provider);
+    // constructor(props){
+    //     super(props);
+    //     this.login = this.login.bind(this);
+    // }
+    // login(){
+    //     let provider = new firebase.auth.GoogleAuthProvider();
+    //     firebase.auth()signInWithRedirect(provider).then(result =>{
+    //         console.log('login google',result);
+    //     })
+    // }
+    // render(){
+    //     return(
+    //         <div>
+    //             <Button variant='contained' onClick={this.Login}>
+    //                 Iniciar sesión con Google
+    //             </Button>
+    //         </div>
+    //     );
+    // }
+// }
 
 // test para firebase
 // test para router 

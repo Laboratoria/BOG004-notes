@@ -1,0 +1,1 @@
+//Aqui voy a hacer el componente de las notas, y luego lo exporto e importo en la vista timeline.
