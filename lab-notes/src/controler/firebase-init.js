@@ -1,6 +1,6 @@
 import { deepCopy } from "@firebase/util";
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged  } from "firebase/auth";
 import {
   collection,
   deleteDoc,
@@ -36,6 +36,18 @@ export const provider = new GoogleAuthProvider();
 export const googlePopUp = () => signInWithPopup(auth, provider);
 
 export const loginWithGoogle = () => {
+  const auth = getAuth();
+const user = auth.currentUser;
+if (user !== null) {
+  const displayNameUser = user.displayName;
+  const emailUser = user.email;
+  const photoURLUser = user.photoURL;
+  const emailVerifiedUser = user.emailVerified;
+
+  const uid = user.uid;
+  console.log("usuario ingresado: ", emailUser)
+  console.log("usuario display: ", displayNameUser)
+}
   return googlePopUp();
 };
 export { GoogleAuthProvider };
@@ -76,4 +88,16 @@ export async function updataNotes(item, newObj) {
     description: newObj.description,
   })
 }
+
+/* // Administrar usuario 
+export const authUser = getAuth();
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const uid = user.uid;
+  } else {
+  }
+  console.log("usuario ingresado: ", user.uid)
+});
+ */
+
 
