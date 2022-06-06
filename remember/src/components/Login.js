@@ -1,21 +1,25 @@
 import React from 'react';
 import '../style.css';
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider } from "../firebase/firebase-controller.js";
 import auth  from '../firebase/firebase.js';
+import { useNavigate } from 'react-router-dom';
 
 //Funcion para logearse con Google
 const Login = ()=> {
-
+    const navigate= useNavigate();
     const loginGoogle = () => {
         const provider = new GoogleAuthProvider();
-        return signInWithPopup(auth, provider);
-      };
+        return signInWithPopup(auth, provider)
+        .then((result) => {
+            navigate('/Wall');
+            console.log(result)
+        });
+          };
     
     //Vista en la interfaz
     return(
     <div className="login">
-    {<img src='src/Image/Remember(2).png' alt='logo'></img>} 
-    <h1>inicia sesion con</h1>
+    <h1>Inicia Sesion con</h1>
     <button onClick={loginGoogle} id='btnGoogle' className='button'>google</button>
     </div>
     );

@@ -17,16 +17,3 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 const auth =  getAuth(app);
 export default auth;
-
-//CODIGO DE PRUEBA PARA FIRESTORE
-// useEffect(() =>{
-
-//   const getData= async() => {
-//   const data = await getDocs(collection(db, 'notas'));
-//   data.forEach((documento) =>{
-//       console.log(documento.data());
-//   })
-//   }
-
-//   getData();
-// }, [])
