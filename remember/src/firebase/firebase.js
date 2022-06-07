@@ -1,7 +1,8 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp,  getFirestore} from './firebase-controller.js';
-import { getAuth } from 'firebase/auth';
-
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
@@ -14,6 +15,24 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+const db = getFirestore(app);
 const auth =  getAuth(app);
-export default auth;
+
+//Login google
+export const loginGoogle = () => {
+  const provider = new GoogleAuthProvider();
+  return signInWithPopup(auth, provider)
+    };
+
+//Para guardar Nota
+export const saveNote = async (title, description, userId) => {
+  // const db = getFirestore(); 
+  const docRef= await addDoc( //variable!
+    collection(db, 'notas'),{
+      title: title ,
+      description: description,
+      userId: userId
+    }
+  );
+  console.log(docRef)
+};
