@@ -73,9 +73,9 @@ const NoteMaker = () => {
 
   return (
     <Fragment>
-      <div>
-        <h1>{localStorage.getItem("name")}</h1>
-        <h1>{localStorage.getItem("email")}</h1>
+      <div className= "notes-dataAll-user">
+        <h4 className= "notes-data-user"> Usuario Conectado: {localStorage.getItem("name")}</h4>
+        <h4 className= "notes-data-user"> {localStorage.getItem("email")}</h4>
       </div>
       <h3>¡Escribe para no olvidar!</h3>
 
@@ -84,7 +84,7 @@ const NoteMaker = () => {
       >
         <div className="note-maker-space">
           <Controller
-            render={({ field: { onChange } }) => (
+            render={({ field: {onChange} }) => (
               <input
                 placeholder="Titulo"
                 className="titleNotes"

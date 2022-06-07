@@ -1,8 +1,26 @@
 h2 {
 line-height: 46px;
 text-align: center;
+}
+
+h3{
+    line-height: 46px;
+text-align: center;
+color: #000000;
+left: 233px;
+top: 452px;
+font-weight: 400;
+font-size: 36px;
+}
+
+.notes-data-user {
+color: rgb(4, 94, 19);
+text-align: right;
+line-height: 10%;
+font-size: 100%;
 
 }
+
 
 .note-maker-space{
     font-family: 'Concert One', cursive;
@@ -62,16 +80,6 @@ background: radial-gradient(circle, rgba(242,242,242,1) 4%, rgba(207,240,209,1) 
     margin-bottom: 0%;
 }
 
-h3{
-    line-height: 46px;
-text-align: center;
-color: #000000;
-left: 233px;
-top: 452px;
-font-weight: 400;
-font-size: 36px;
-}
-
 .individualNotesEdit{
     margin-bottom: 0%;
     border-radius: 100px;
@@ -81,9 +89,6 @@ font-size: 36px;
     background-color: whitesmoke;
     display: inline;
     margin-left: 48px;
-
-
-   
 }
 .individualNotesDelet{
     color: red;

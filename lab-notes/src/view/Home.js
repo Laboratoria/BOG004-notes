@@ -36,10 +36,7 @@ function Home() {
           onClick={signInWithGoogle}
         />
 
-        <div>
-          <h1>{localStorage.getItem("name")}</h1>
-          <h1>{localStorage.getItem("email")}</h1>
-        </div>
+     
       </div>
       <div></div>
     </section>
