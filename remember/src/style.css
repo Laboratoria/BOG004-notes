@@ -1,0 +1,18 @@
+body{
+background-image: url("Image/logo.png");
+}
+.login{
+    display: grid;
+    justify-content: space-around;
+    align-items: center;
+    font-family:'Courgette', cursive;
+    margin-top: 25em;;
+}
+h1{
+    background: #CC704B;
+    border:black ;
+}
+.button{
+    background-color: #CC704B;
+    border-radius: 10px;
+}
