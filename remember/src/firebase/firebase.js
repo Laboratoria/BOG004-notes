@@ -31,7 +31,7 @@ export const saveNote = async (title, description, userId) => {
     collection(db, 'notas'),{
       title: title ,
       description: description,
-      userId: userId
+     // userId: userId
     }
   );
   console.log(docRef)
