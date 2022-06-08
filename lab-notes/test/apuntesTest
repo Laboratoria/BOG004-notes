@@ -1,0 +1,15 @@
+// //Aqui voy a hacer la vista de loginin, debe estar en el ruteo de App,
+// //debe traerse el componente Button
+
+
+// // test para firebase
+// // test para router
+// // examinar historias de usuario
+// // formulario de autenticacion: id que devuelva algo
+// // get elemntby id del imput
+// // test del boton cuando el usuario haga esto es el expect pase esto que es el tobe que espero que pase
+// // hacer la lista de los test que quieros
+// // testeo la funcipon, checkear el DOMException
+// // md links imput y output
+// // mirar desde el punto de vista del usuario
+// // automatizar para que los push del github implementen los test con github actions

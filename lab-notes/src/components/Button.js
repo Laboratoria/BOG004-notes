@@ -1,21 +1,14 @@
-//Aqui voy a hacer el componente del boton, y luego lo exporto e importo en signIn y login
+//Aqui voy a hacer el componente del boton, y luego lo exporto e importo en signIn
 
 import React from "react";
+import { handleGoogleSignIn } from '../pages/SignIn'
 
-const Button = () => {
+export const Button = () => {
     return(
         <div>
-        <button>Sign in with Google</button>
+        <button onClick={handleGoogleSignIn}>Sign in with Google</button>
         </div>
     )
 };
 
-export default Button;
-// export default Button() {
-//     return (
-//       <div>
-//         <h1>Welcome to my app</h1>
-//         <MyButton />
-//       </div>
-//     );
-//   }
+// export default { Button };
