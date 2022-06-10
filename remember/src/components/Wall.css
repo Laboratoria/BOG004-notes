@@ -1,0 +1,25 @@
+.wall{
+    display: flex ;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputNote{
+    background-color: #E8C07D ;
+    padding: 1em;
+    margin: 0.5em; 
+   text-align: center;
+}
+
+.textNote{
+    background-color: #E8C07D;
+    padding: 2em;
+    margin: 0.5em;
+    text-align: center;
+
+}
+
+.buttonWall{
+    background-color: #CC704B;
+    border-radius: 10px;
+}

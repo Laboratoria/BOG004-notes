@@ -1,6 +1,6 @@
-body{
-background-image: url("Image/logo.png");
-}
+/* body{
+background-image: url("../Image/logo.png");
+} */
 .login{
     display: grid;
     justify-content: space-around;
@@ -8,10 +8,10 @@ background-image: url("Image/logo.png");
     font-family:'Courgette', cursive;
     margin-top: 25em;;
 }
-h1{
+/* h1{
     background: #CC704B;
     border:black ;
-}
+} */
 .button{
     background-color: #CC704B;
     border-radius: 10px;

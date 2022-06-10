@@ -1,5 +1,5 @@
 import React from 'react';
-import '../style.css';
+import '../components/Login.css';
 import { useNavigate } from 'react-router-dom';
 import { loginGoogle } from '../firebase/firebase.js';
 
@@ -16,10 +16,14 @@ const Login = ()=> {
     //Vista en la interfaz
     return(
     <div className="login">
+        <div className='logo'>
+        <img 
+          src={require("../Image/logo.png")}/>
+        </div>
     <h1>Inicia Sesion con</h1>
     <button onClick={loginWithGoogle} id='btnGoogle' className='button'>google</button>
     </div>
     );
-}
+};
 
 export default Login;

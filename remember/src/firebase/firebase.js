@@ -36,3 +36,15 @@ export const saveNote = async (title, description, userId) => {
   );
   console.log(docRef)
 };
+
+//Para traer Notas
+ export const getNotes= async() => {
+  const data = await getDocs(collection(db, 'notas'));
+  const notes = [];
+  data.forEach(item =>{
+    //console.log("dataaa", item.data());
+    notes.push({title: item.data().title, description: item.data().description})
+  })
+  
+  return notes;
+  }
