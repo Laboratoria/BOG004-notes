@@ -3,6 +3,7 @@
 //debe estar ruteado en App
 import React from "react";
 import { Logout } from "./Logout";
+import { Button } from "components/Button";
 
 export const Timeline = (props) => {
     return(
@@ -11,6 +12,7 @@ export const Timeline = (props) => {
             hola
                 {props.children}
             </p>
+            <Button />
         </div>
     )
 }

@@ -7,7 +7,7 @@ import { SignIn } from './pages/SignIn'
 import { Timeline } from './pages/Timeline'
 
 import {
-  BrowserRouter as Router, Routes, Route, Link
+  BrowserRouter as Router, Routes, Route
 } from "react-router-dom";
 //import Navigator from 'components/navigate';
 
