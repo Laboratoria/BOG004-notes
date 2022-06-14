@@ -1,7 +1,8 @@
 import { async } from '@firebase/util';
 import '../components/Wall.css'
-import React, { useState, useEffect } from 'react';
-import { saveNote, getNotes } from '../firebase/firebase.js'
+import React, { useState, useEffect, Fragment } from 'react';
+import { saveNote, getNotes, editNote } from '../firebase/firebase.js'
+import { Note } from './Note';
 //import Note from './Note';
 
 
@@ -14,6 +15,7 @@ const Wall = ()=> {
   //Guardar Nota
   const saveNoteWall = () =>{
    saveNote(title, description)
+   getListNotes();
   }
 
  //traer Nota
@@ -25,25 +27,38 @@ const Wall = ()=> {
     const getListNotes = async() =>{
       const notes= await getNotes();
       setNotes(notes);
-      // cuando crean una nueva nota [...notes, newNote]
       console.log(notes)
     }
-    if (!notes.length) return <div>Loading... 888</div>;
+
+    //Para Editar
+    const editNoteWall =(id) =>{
+      editNote(id, title, description)
+      console.log('holaaaa a todos', id)
+        }
+      
 
   return(
      <div className="wall">
         <div className='logoWall'>
         <img 
-          src={require("../Image/logo.png")}/>
+          src={require("../Image/LogoWall.png")}/>
         </div>
+      <h1>Bloc de Notas</h1>
       <input className='inputNote' value={title}  onChange={(e) => setTitle(e.target.value)} placeholder='titulo'/>
       <textarea className='textNote' value={description}  onChange={(e) => setDescription(e.target.value)} placeholder='Descripcion'/>
       <button onClick={saveNoteWall} id='publish' className='buttonWall'>pubicar</button>
-      <p id="delete">{notes[0].title}</p>
-      <p id="delete2">{notes[0].description}</p>
-      {notes.map((note) => {
-        <p>{note.title}</p>;
-      })}
+      <div className='ContainerNotes'>
+      {notes.map((note, index) => (
+        <Fragment  key={index} >
+         <Note
+          title={note.title} 
+          description={note.description}
+          editNoteWall={() => {editNoteWall(note.id)}}
+          />
+      </Fragment>
+         
+        ))}
+        </div>
       </div>
     );
 };

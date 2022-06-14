@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs, getDoc, doc, updateDoc } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
@@ -42,9 +42,26 @@ export const saveNote = async (title, description, userId) => {
   const data = await getDocs(collection(db, 'notas'));
   const notes = [];
   data.forEach(item =>{
-    //console.log("dataaa", item.data());
-    notes.push({title: item.data().title, description: item.data().description})
+    console.log("dataaa", item.data(), item.id);
+    notes.push({title: item.data().title, description: item.data().description, id: item.id})
   })
-  
+
   return notes;
   }
+
+ // Para traer una Nota
+  export const getNote= async (id) => {
+     const db = getFirestore();
+    const noteEdit = await getDoc(doc(db, 'notas', id));
+    console.log('holaaa', noteEdit)
+    return noteEdit;
+  };
+
+  //Para Actucalizar la Nota
+  export const editNote = async(id, title, description) =>{
+  const note= doc(db, "notas", id);
+  await updateDoc(note, {
+    title,
+    description
+  });
+};

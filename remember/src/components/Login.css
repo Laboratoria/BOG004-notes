@@ -1,18 +1,20 @@
-/* body{
-background-image: url("../Image/logo.png");
-} */
+
 .login{
     display: grid;
     justify-content: space-around;
+    justify-items: center;
     align-items: center;
     font-family:'Courgette', cursive;
-    margin-top: 25em;;
 }
-/* h1{
-    background: #CC704B;
-    border:black ;
-} */
+.logo{
+    padding: 0%;
+    text-align: center;
+}
+
 .button{
+    height: 50px;
+    padding-left: 3em;
+    padding-right: 3em;
     background-color: #CC704B;
     border-radius: 10px;
 }
