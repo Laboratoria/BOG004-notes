@@ -3,9 +3,9 @@
 
 import React from "react";
 import { Button } from "components/Button";
-import firebase from "firebase/app"
-import { redirect } from 'services/firebase'
-import { loginWithGoogle } from 'services/firebase'
+// import firebase from "firebase/app";
+// import { redirect } from 'services/firebase';
+// import { useState } from "react";
 
 export const SignIn = () => {
     return(
@@ -14,15 +14,12 @@ export const SignIn = () => {
             <h2>Create Your Notes</h2>
             <p>For your Daily Tasks Set Reminders.</p>
             <Button />
-            <p>Alreay have an account?</p>
+            <p>Already have an account?</p>
 {/* este texto puede ser un componente editado en inner html lo mismo que el boton?*/}
         </div>
     )
 };
 
-export const handleGoogleSignIn = async () => {
-   await loginWithGoogle()
-};
 
 
 

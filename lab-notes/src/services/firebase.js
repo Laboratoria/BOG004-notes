@@ -1,5 +1,5 @@
 //Aqui voy a dejar las funciones de firebase y las exporto e importo en login signIn y sign out(?)
-import { GoogleAuthProvider, getAuth, signInWithRedirect, getRedirectResult } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithRedirect, getRedirectResult, signInWithPopup, signOut } from "firebase/auth";
 import firebaseConfig from './firebaseConfig';
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
@@ -11,7 +11,6 @@ export const redirect = () => {
         // This gives you a Google Access Token. You can use it to access Google APIs.
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-    
         // The signed-in user info.
         const user = result.user;
     }).catch((error) => {
@@ -24,12 +23,21 @@ export const redirect = () => {
         const credential = GoogleAuthProvider.credentialFromError(error);
         // ...
     });
-    
 };
 
 export const loginWithGoogle = () => {
     const googleProvider = new GoogleAuthProvider()
-    return signInWithRedirect(auth, googleProvider)
- };
+    return signInWithPopup(auth, googleProvider)
+};
+
+
+export const LogOut = () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      // Sign-out successful.
+    }).catch((error) => {
+      // An error happened.
+    });
+}
 
 
