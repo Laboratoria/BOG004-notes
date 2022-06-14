@@ -5,6 +5,7 @@ import React from "react";
 import { Button } from "components/Button";
 import "../styles/SignIn.css"
 import "../styles/Button.css"
+import logo from '../media/logo.png';
 // import firebase from "firebase/app";
 // import { redirect } from 'services/firebase';
 // import { useState } from "react";
@@ -13,11 +14,11 @@ export const SignIn = () => {
     return(
         <div>
             <h1>LabNotes</h1>
+            <img src={logo} alt="Logo" />;
             <h2>Create Your Notes</h2>
             <p>For your Daily Tasks Set Reminders.</p>
             <Button />
-            <p>Already have an account?</p>
-{/* este texto puede ser un componente editado en inner html lo mismo que el boton?*/}
+            {/* <p>Already have an account?</p> */}
         </div>
     )
 };

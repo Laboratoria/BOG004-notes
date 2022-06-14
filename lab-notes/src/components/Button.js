@@ -14,10 +14,10 @@ export const Button = () => {
         await loginWithGoogle()
         navigate('/Timeline')
     };
-    const handleLogout = async () => {
-            await LogOut()
-            navigate('/')
-        };
+    // const handleLogout = async () => {
+    //         await LogOut()
+    //         navigate('/')
+    //     };
 
 
 
@@ -26,7 +26,7 @@ export const Button = () => {
         <div>
         {/* <button onClick={handleGoogleSignIn}>Sign in with Google</button> */}
         <button onClick={handleGoogleSignIn}>{isLogin ? 'Sign in with Google' : 'logout'}</button>
-        <button onClick={handleLogout}>{isLogin ? 'logout' : 'Sign in with Google'}</button>
+        {/* <button onClick={handleLogout}>{isLogin ? 'logout' : 'Sign in with Google'}</button> */}
         </div>
     )
 };

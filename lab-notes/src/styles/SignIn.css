@@ -1,13 +1,16 @@
 body{
-    /* background-color: #050C21; */
-    background-image: url('https://imgur.com/FpEXwga');
+    background-color: #050C21;
     display:flex;
     flex-direction:column;
-    justify-content:space-around;
+    justify-content:center;
     align-items:center;
+    height:100vh;
 }
 
-h1 {
-    font-style: white;
+h1, h2, p{
+    color: white;
+    text-align: center;
 }
+
+
 
