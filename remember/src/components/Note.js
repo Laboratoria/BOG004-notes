@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../components/Note.css'
 // Pintar la Nota en la interfaz. Aca recibimos los props
 export const Note = ({title, description, editNoteWall}) => {
 

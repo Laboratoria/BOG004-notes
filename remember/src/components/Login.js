@@ -21,7 +21,9 @@ const Login = ()=> {
           src={require("../Image/logo.png")}/>
         </div>
     <h1>Inicia Sesion con</h1>
-    <button onClick={loginWithGoogle} id='btnGoogle' className='button'>google</button>
+    <button onClick={loginWithGoogle} id='btnGoogle' className='button'>
+        google<img className='google' src="../Image/logoGoogle.png"></img>
+    </button>
     </div>
     );
 };

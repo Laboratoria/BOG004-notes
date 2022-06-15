@@ -57,7 +57,7 @@ export const saveNote = async (title, description, userId) => {
     return noteEdit;
   };
 
-  //Para Actucalizar la Nota
+  //Para Actualizar la Nota
   export const editNote = async(id, title, description) =>{
   const note= doc(db, "notas", id);
   await updateDoc(note, {

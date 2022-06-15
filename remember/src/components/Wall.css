@@ -32,10 +32,10 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    flex-direction: column-reverse;
+    flex-direction: row-reverse;
     padding-bottom: 10em;
-    border: solid red;
-}  
+    align-items: center;
+}
 
 .note{
     border: solid rebeccapurple;
