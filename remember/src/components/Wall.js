@@ -1,8 +1,10 @@
 //import { async } from '@firebase/util';
 import '../components/Wall.css'
 import React, { useState, useEffect, Fragment } from 'react';
-import { saveNote, getNotes, editNote } from '../firebase/firebase.js'
+import { saveNote, getNotes, editNote, deleteNote } from '../firebase/firebase.js'
 import { Note } from './Note';
+import { useNavigate } from 'react-router-dom';
+
 //import Note from './Note';
 
 
@@ -58,6 +60,21 @@ const Wall = ()=> {
     }))
   }
 
+  //Eliminar Nota
+  const deleteNoteWall = (id)=>{
+    deleteNote(id);
+    getListNotes();
+  }
+
+  //Cerrar sesión con el boton
+  let Navigate= useNavigate()
+  function signOff(e){
+    e.preventDefault();
+    console.log("click")
+    Navigate("/")
+  }
+
+
   return(
      <div className="wall">
         <div className='logoWall'>
@@ -75,12 +92,15 @@ const Wall = ()=> {
           title={note.title} 
           description={note.description}
           editNoteWall={() => {editNoteWall(note)}}
+          deleteNoteWall ={() => {deleteNoteWall(note.id)}}
           />
       </Fragment>
-         
         ))}
         </div>
+      <div>
+        <button onClick={signOff} id='closed' className='buttonClosed'>Cerrar Sesion</button>
       </div>
+    </div>
     );
 };
 

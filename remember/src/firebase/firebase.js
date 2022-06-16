@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
-import { collection, addDoc, getDocs, getDoc, doc, updateDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, getDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
@@ -64,4 +64,10 @@ export const saveNote = async (title, description, userId) => {
     title,
     description
   });
+};
+
+//Eliminar Nota
+export const deleteNote = (id) => {
+  const db = getFirestore();
+  deleteDoc(doc(db, "notas", id));
 };
