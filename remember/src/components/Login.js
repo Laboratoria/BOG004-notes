@@ -20,10 +20,11 @@ const Login = ()=> {
         <img 
           src={require("../Image/logo.png")}/>
         </div>
-    <h1>Inicia Sesion con</h1>
-    <button onClick={loginWithGoogle} id='btnGoogle' className='button'>
-        google<img className='google' src="../Image/logoGoogle.png"></img>
-    </button>
+    <h1 className='titleLogin'>Inicia Sesion con</h1>
+    <button onClick={loginWithGoogle} id='btnGoogle' className='button'>google</button>
+    <footer className='footer'>
+        Creado por Michell Vanegas
+        </footer>
     </div>
     );
 };

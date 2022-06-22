@@ -6,14 +6,12 @@ export const Note = ({title, description, editNoteWall, deleteNoteWall}) => {
 
   return (
     <div className="containerNotetwo">
-      <div className="notepq">
         <article>
-          <h2>{title}</h2>
-          <p>{description}</p>
-          <button id='edit' onClick={editNoteWall} className='buttonWall'>editar</button>
+          <h2 className='title'>{title}</h2>
+          <p className='description'>{description}</p>
+          <button id='edit' onClick={editNoteWall} className='buttonEdit'>editar</button>
           <button id='delete' onClick={deleteNoteWall} className='buttonDelete'>eliminar</button>
         </article>
-      </div>
     </div>
   );
 };

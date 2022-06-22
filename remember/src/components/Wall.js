@@ -79,12 +79,14 @@ const Wall = ()=> {
      <div className="wall">
         <div className='logoWall'>
         <img 
-          src={require("../Image/LogoWall.png")}/>
+          src={require("../Image/logoWallSolo.png")}/>
         </div>
+        <div className='text'>
       <h1>Bloc</h1>
       <input className='inputNote' value={thisNote.title}  onChange={(e) => setTitle(e.target.value)} placeholder='titulo'/>
       <textarea className='textNote' value={thisNote.description}  onChange={(e) => setDescription(e.target.value)} placeholder='Descripcion'/>
       <button onClick={saveNoteWall} id='publish' className='buttonWall'>publicar</button>
+      </div>
       <div className='ContainerNotes'>
       {notes.map((note, index) => (
         <Fragment  key={index} >
@@ -98,7 +100,7 @@ const Wall = ()=> {
         ))}
         </div>
       <div>
-        <button onClick={signOff} id='closed' className='buttonClosed'>Cerrar Sesion</button>
+        <button onClick={signOff} id='closed' className='buttonClosed'>Cerrar sesion</button>
       </div>
     </div>
     );
