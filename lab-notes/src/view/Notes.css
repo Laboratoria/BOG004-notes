@@ -14,7 +14,7 @@ font-size: 36px;
 }
 
 .notes-data-user {
-color: rgb(4, 94, 19);
+color: rgb(112, 11, 226);
 text-align: right;
 line-height: 10%;
 font-size: 100%;
@@ -52,7 +52,7 @@ padding: 30px;
 }
 
 .btn-notas-primary{ /*botón publicar y editar*/
-    color: rgb(11, 185, 11);
+    color: rgb(107, 15, 228);
     border-color: whitesmoke;
     width:  70px;
     height: 30px;
